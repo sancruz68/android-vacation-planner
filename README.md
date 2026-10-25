@@ -1,92 +1,51 @@
-\# Android Vacation Planner
+# Android Vacation Planner
 
+A native Android app I built with Java to organize vacations, plan excursions, and keep track of important dates. It uses Room for local data storage and WorkManager for reminders.
 
+## Screenshots
 
-A native Android application I built using Java to organize vacations, manage excursions, and keep track of important travel dates. The app uses Room Database for local storage and WorkManager to schedule reminders.
+| Home screen | Vacation details | Add vacation |
+|:---:|:---:|:---:|
+| <img src="android-app/screenshots/vacation-home.png" alt="Vacation Planner home screen" width="245" /> | <img src="android-app/screenshots/vacation-details.png" alt="Vacation details and excursion" width="245" /> | <img src="android-app/screenshots/add-vacation.png" alt="Add vacation form" width="245" /> |
 
+## Features
 
+- Create, view, edit, and delete vacations with destinations and travel dates.
+- Add and manage excursions linked to a specific vacation.
+- Validate vacation date ranges and ensure excursion dates fall within the trip.
+- Save vacations and excursions locally using Room (SQLite).
+- Schedule vacation and excursion notifications with WorkManager.
+- Confirm deletions and automatically delete associated excursions when a vacation is removed.
 
-\## Features
+## Tech Stack
 
+- **Language:** Java
+- **Interface:** Android SDK and XML layouts
+- **Database:** Room (SQLite)
+- **Background tasks:** Android WorkManager
+- **Build:** Gradle
+- **Testing:** JUnit and AndroidX Test
 
+## Automated Tests
 
-\- \*\*Vacation Management:\*\* Create, view, edit, and delete vacations with destinations and travel dates.
+Five instrumented database tests passed on a Pixel 7 emulator running Android API 35:
 
-\- \*\*Excursion Planning:\*\* Add, edit, and delete excursions associated with a vacation.
+1. Save and retrieve a vacation.
+2. Update a vacation.
+3. Save and retrieve an excursion.
+4. Update and delete an excursion.
+5. Verify excursions are deleted when their vacation is deleted.
 
-\- \*\*Date Validation:\*\* Prevent invalid vacation date ranges and excursions scheduled outside their vacation dates.
+![Five passing instrumented tests](android-app/screenshots/automated-tests.png)
 
-\- \*\*Local Database:\*\* Store vacation and excursion information on the device using Room Database.
+## Run Locally
 
-\- \*\*Notifications:\*\* Schedule reminders for upcoming vacations and excursions.
+1. Clone this repository.
+2. Open the `android-app` folder in Android Studio.
+3. Let Gradle finish syncing.
+4. Select an emulator or Android device running API 26 or later.
+5. Run the app and grant notification permission if prompted.
 
-\- \*\*Data Management:\*\* Confirm deletions and automatically remove associated excursions when a vacation is deleted.
+## Notes
 
-
-
-\## Technologies Used
-
-
-
-\- Java
-
-\- Android SDK
-
-\- XML Layouts
-
-\- Room Database (SQLite)
-
-\- Android WorkManager
-
-\- Gradle
-
-\- JUnit and AndroidX Test
-
-
-
-\## Screenshots
-
-
-
-| Home Screen | Vacation Details | Add Vacation |
-
-|---|---|---|
-
-| !\[Home Screen](android-app/screenshots/vacation-home.png) | !\[Vacation Details](android-app/screenshots/vacation-details.png) | !\[Add Vacation](android-app/screenshots/add-vacation.png) |
-
-
-
-\## Automated Testing
-
-
-
-I implemented five Android instrumented tests covering database operations and relationships:
-
-
-
-1\. Save and retrieve a vacation.
-
-2\. Update an existing vacation.
-
-3\. Save and retrieve an excursion.
-
-4\. Update and delete an excursion.
-
-5\. Verify that deleting a vacation also deletes its associated excursions.
-
-
-
-All five tests passed on a Pixel 7 emulator running Android API 35.
-
-
-
-!\[Automated Test Results](android-app/screenshots/automated-tests.png)
-
-
-
-\## Running the Application
-
-
-
-1\. Clone
-
+Vacation and excursion information stays on the device; there is no account system or cloud synchronization. WorkManager schedules reminders in the background, but Android may adjust the exact delivery time.
